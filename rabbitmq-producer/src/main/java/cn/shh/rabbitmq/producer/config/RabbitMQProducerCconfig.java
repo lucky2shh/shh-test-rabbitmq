@@ -79,6 +79,4 @@ public class RabbitMQProducerCconfig {
                                          @Qualifier("headersExchange") HeadersExchange exchange){
         return BindingBuilder.bind(queue).to(exchange).where("key").exists();
     }*/
-
-
 }
