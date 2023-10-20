@@ -1,0 +1,20 @@
+server:
+  port: 8090
+
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /test
+    username: rmq_test
+    password: rmqtest
+    listener:
+      simple:
+        acknowledge-mode: manual    # none:自动确认，manual:手动确认，auto：根据是否有异常来选择性判断
+        prefetch: 1   # 限制消费端每次只能从mq中拉取多少条消息。该功能只有在手动确认消息模式下生效。
+        retry:
+          enabled: true             # 开启消费失败重试功能。
+          initial-interval: 1000    # 消费失败等待时长，单位毫秒。
+          multiplier: 2             # 下次失败时等待时间是上一次的多少倍。
+          max-attempts: 3           # 最大失败重试次数
+          stateless: true           # true表示无状态，false表示有状态。若存在事务则建议修改为false。

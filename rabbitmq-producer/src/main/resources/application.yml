@@ -1,0 +1,18 @@
+server:
+  port: 8091
+
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /test
+    username: rmq_test
+    password: rmqtest
+    # 消息是否到达交换机都会执行confirmCallback，其执行方式可以在此设置。
+    # 可选值有三个：NONE（默认）、CORRELATED（异步）、SIMPLE（同步）
+    publisher-confirm-type: correlated
+    # 消息从交换机转发至队列失败时是否执行returnCallback。true表示执行，false表示不执行。
+    publisher-returns: true
+    # 消息从交换机转发至队列失败时的处理策略。true表示执行returnCallback，false表示直接丢弃消息。
+    template:
+      mandatory: true
